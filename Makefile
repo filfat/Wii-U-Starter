@@ -31,7 +31,7 @@ BUILD		:=	build
 BUILD_DBG	:=	$(BUILD)_dbg
 SOURCES		:=	source
 DATA		:=	data
-INCLUDES	:=  include
+INCLUDES	:=	include
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -52,7 +52,7 @@ MAKEFLAGS += --no-print-directory
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-#LIBS	:= 
+#LIBS		:= 
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -82,7 +82,6 @@ CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
 sFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
 SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.S)))
 BINFILES	:=	$(foreach dir,$(DATA),$(notdir $(wildcard $(dir)/*.*)))
-PNGFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.png)))
 
 #---------------------------------------------------------------------------------
 # use CXX for linking C++ projects, CC for standard C
@@ -128,9 +127,6 @@ DEPENDS	:=	$(OFILES:.o=.d)
 #---------------------------------------------------------------------------------
 $(OUTPUT).elf: $(OFILES)
 
-#---------------------------------------------------------------------------------
-# This rule links in binary data with the .jpg extension
-#---------------------------------------------------------------------------------
 %.elf: link.ld $(OFILES)
 	@echo "linking ... $(TARGET).elf"
 	$(Q)$(CC) -n -T $^ $(LDFLAGS) -o ../$(BUILD_DBG).elf
